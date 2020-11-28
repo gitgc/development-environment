@@ -1,0 +1,5 @@
+# rerun the Boxstarter setup file. Open a PowerShell window and type: C:\vagrant\re-run.ps1
+
+cp C:\vagrant\setup.ps1 $env:TEMP
+$credential = New-Object System.Management.Automation.PSCredential("vagrant", (ConvertTo-SecureString "vagrant" -AsPlainText -Force))
+Install-BoxstarterPackage $env:TEMP\setup.ps1 -Credential $credential
