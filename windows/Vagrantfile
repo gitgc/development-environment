@@ -1,26 +1,22 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
- 
-# Base box: https://github.com/akrabat/packer-templates
- 
+  
 Vagrant.configure("2") do |config|
  
   config.vm.box = "fishi0x01/win-10-pro-x64"
   config.vm.guest = :windows
   config.vm.boot_timeout = 600
- 
   config.vm.hostname = "WinDev"
   config.vm.network "private_network", ip: "192.168.99.201"
- 
   config.vm.communicator = "winrm"
  
   config.vm.provider "VirtualBox" do |vb|
-    # Display the VirtualBox GUI when booting the machine
+    # Display the VirtualBox GUI when building the machine
     vb.gui = true
-    # Customize the amount of memory on the VM:
     vb.memory = "8092"
     vb.cpus = 4
   end
+  
   config.vm.provision "shell", privileged: "true", inline: <<-'POWERSHELL'
     Set-TimeZone "Coordinated Universal Time"
  
